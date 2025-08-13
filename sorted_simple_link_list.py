@@ -4,23 +4,36 @@ class Nodo:
         self.link = None
 
 class Sorted_link_list:
-    head_lista = None
+    def __init__(self):
+        self.head_lista = None
     
-    @classmethod
-    def add_data(cls, new_data):
-        if cls.head_lista is None:
-            cls.head_lista = Nodo(new_data)
+    def add_data(self, new_data):
+        if self.head_lista is None:
+            self.head_lista = Nodo(new_data)
         else:
             new_nodo = Nodo(new_data)
-            actual_nodo = cls.head_lista
+            actual_nodo = self.head_lista
             while actual_nodo.link is not None:
                 actual_nodo= actual_nodo.link
             actual_nodo.link = new_nodo
-    
-    @classmethod
-    def __str__(cls):
+
+    def sort_data(self):
+        if self.head_lista is None or self.head_lista.link is None:
+            return "La lista es la misma"
+        
+        swap = True
+        while swap:
+            swap = False
+            actual_nodo = self.head_lista
+            while actual_nodo.link is not None:
+                if actual_nodo.data > actual_nodo.link.data:
+                    actual_nodo.data, actual_nodo.link.data = actual_nodo.link.data, actual_nodo.data
+                    swap = True
+                actual_nodo = actual_nodo.link
+
+    def __str__(self):
         result = ""
-        nodo_actual = cls.head_lista
+        nodo_actual = self.head_lista
         while nodo_actual is not None:
             result += str(f"{nodo_actual.data} -> ")
             nodo_actual = nodo_actual.link
