@@ -26,9 +26,13 @@ class Sorted_link_list:
             swap = False
             actual_nodo = self.head_lista
             while actual_nodo.link is not None:
-                if actual_nodo.data > actual_nodo.link.data:
-                    actual_nodo.data, actual_nodo.link.data = actual_nodo.link.data, actual_nodo.data
-                    swap = True
+                try:
+                    if actual_nodo.data > actual_nodo.link.data:
+                        actual_nodo.data, actual_nodo.link.data = actual_nodo.link.data, actual_nodo.data
+                        swap = True
+                except TypeError:
+                    print( "Por favor ingresa solo valores de un mismo tipo")
+                    return 
                 actual_nodo = actual_nodo.link
 
     def __str__(self):
